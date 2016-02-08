@@ -1,0 +1,22 @@
+h1  {font-size:16px; font-weight:bold; font-family:verdana; color:navy; }
+h2  {font-size:14px; font-weight:bold; font-family:verdana; color:#004080; }
+body{font-size:10pt; font-family:verdana; padding-left:0px; }  
+em  {font-weight:bold; color:navy; }
+hr  {color:navy; }
+td  {font-size:14px;  font-family:verdana; }
+
+
+/*.tblHeading{ font-size:14px; font-weight:bold; font-family:verdana; color:black; }  */
+.recordtbl{ border-color:black; border-width:1px; border-style:solid; }  
+
+.odd { background-color:oldlace; }
+.even{ background-color:lightgray; }
+
+tr:nth-child(odd)  { opacity: 0.7; }   /* lighten every other row */
+tr:hover  { opacity: 1; background-color: ghostwhite; }   /* highlight on hover */
+
+
+a:link    { color:darkred; text-decoration:none;      }
+a:visited { color:blue;    text-decoration:none;      }
+a:hover   { color:black;   text-decoration:underline; }
+a:active  { color:blue;    text-decoration:none;      }
