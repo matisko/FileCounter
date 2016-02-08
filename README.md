@@ -10,7 +10,11 @@ Features
 * Quick writes.
 * Colour highlighting for different days, alternate rows, and mouse hover.
 * Auto generated links reload logs and toggle chopping long values and/or hiding repeated values.
-* Optional parameters can be used to log page hits in the counter for that page, and/or the "all" counter.
+* Optional parameters in the three main functions determine whether to:
+ * print the hit count on the page (default: not printed)
+ * add page hits to the log for that page  (default: yes)
+ * add page hits to the "all" log  (default: yes)
+ * the custom log name for the page (default: based on the calling page name)
 * Simple blocking of IP ranges, to prevent bots from soaking up bandwidth (and blocked hits will be logged separately).  
 The file named "_" is the empty dummy file the bots get redirected to.
 * Row or column ordering in the log display could be changed by adjusting a bit of code.
@@ -22,6 +26,7 @@ Requirements
 ------------
 * PHP 5.2+  
 Some PHP versions have backward incompatibile changes, so though I expect this works on newer installs, I have not tested it.
+
 
 
 Screenshots
@@ -49,6 +54,30 @@ repeats shown, long values are intact
 
 ![Screenshot](/screenshot-3.JPG)
 
+
+
+Installing
+----------
+Some web admin experience is assumed.  The code is explained at length by comments in fileCounter.php.
+
+Set the log file folder at the top of the code.  I recommend absolute paths because my experience is that relative paths sometimes lead to trouble. I keep the code and .css files etc in .../counters/ and the logs in .../counters/data/ but they can be in the same folder.
+
+  `$DataDir = "/home/mywebsite/public_html/counters/data/";     // Keep the trailing slash`
+
+
+In the .php files you want to log, add this line, with the path adjusted for you:
+
+  `<?php  require '/home/mywebsite/public_html/counters/fileCounter.php';  UpdateCounter();  ?>`
+
+On my site, the page that handles 404 events (attempts to visit non-existent pages) the line is:
+
+  `<?php  require '/home/mywebsite/public_html/counters/fileCounter.php';  UpdateCounter( false, false, true, "counterPageDoesNotExist" );  ?>`
+
+With these parameters;  don't print the hit count, don't record in the "all" log, do record in the page log, use this custom log name.
+
+index.php calls the function to list all logs.
+
+If you use IP blocking, put the include line as near the top of your page as possible.
 
 
 Possible future features
